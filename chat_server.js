@@ -1,71 +1,85 @@
 const http = require('http');
-const Assistant = require('./lib/assistant');
+const fs = require('fs');
+const mime = require('mime-types');
+const urlParser = require('url');
+const Assistant = require('./assistant');
 const port = process.env.PORT || 5000;
 
-let messages = [];
-
 http.createServer(handleRequest).listen(port);
-console.log("Listening on port " + port);
+console.log("Listening on port: " + port);
+
+let messages = []
 
 function handleRequest(request, response) {
-  // let url = new URL(request.url, 'http://localhost:5000/')
-  let url = require('url').parse(request.url);
-  let path = url.pathname;
+    console.log('request.url is ' + request.url);
 
-  console.log('Finding ' + path);
-  let assistant = new Assistant(request, response);
+    let assistant = new Assistant(request, response);
+    let path = assistant.path
 
-  // "routing" happens here (not very complicated)
-  let pathParams = parsePath(path);
-  if (isChatAction(pathParams)) {
-    handleChatAction(request, assistant);
-  } 
-  else if (assistant.isRootPathRequested()) {
-    assistant.sendFile('./public/chat.html');
-  } 
-  else {
-    assistant.handleFileRequest();
-  }
-}
+    let since = request.url.split('?')[1]
+    console.log("since is: ")
+    console.log(since)
 
-function parsePath(path) {
-  let format;
-  if (path.endsWith('.json')) {
-    path = path.substring(0, path.length - 5);
-    format = 'json';
-  }
-  let pathParts = path.slice(1).split('/');
-  let action = pathParts.shift();
-  let id = pathParts.shift();
-  let pathParams = { action: action, id: id, format: format };
-  return pathParams;
-}
+    let data
 
-function isChatAction(pathParams) {
-  return (pathParams.action === 'chat');
-}
+    try {
+        if (path === '/') {
+            assistant.sendFile('index.html');
+        } else if (path === '/chat') {
+            console.log('Parsing the post...')
 
-function handleChatAction(request, handler) {
-  if (request.method === 'GET') {
-    sendChatMessages(handler);
-  } else if (request.method === 'POST') {
-    handler.parsePostParams((params) => {
-      let message = {
-        username: "Anonymous",
-        content: params.content,
-        when: new Date(Date.now()).toISOString()
-      }
-      messages.push(message);
+            if (assistant.request.method === 'GET') {
+                console.log("HELLO FROM GET!")
+                if (since === undefined) {
+                    console.log("Hello from since = undefined")
+                    data = JSON.stringify(messages);
+                    
+                }
+                else {
+                    console.log("Hello from since = else")
+                    data = []
+                    for (let i = 0; i < messages.length; i++) {
+                        if (messages[i].when > since)
+                            data.push(messages[i])
+                    }
+                    data = JSON.stringify(data);
+                    console.log(data)
+                }
+                console.log("Hello from after since tests")
+                console.log(data)
+                let type = mime.lookup('json')
+                assistant.finishResponse(type, data)
 
-      sendChatMessages(handler);
-    });
-  } else {
-    handler.sendError(405, "Method '" + request.method + "' Not Allowed");
-  }
-}
 
-function sendChatMessages(handler) {
-  let data = JSON.stringify(messages);
-  let contentType = 'text/json';
-  handler.finishResponse(contentType, data);
+
+            } else {
+
+                assistant.parsePostParams((params) => {
+                    let message = {
+                        name: 'Anonymous',
+                        body: params.body,
+                        when: new Date().toISOString()
+                    }
+                    messages.push(message);
+                    // console.log({ message });
+                    // console.log({ messages });
+                    let data = JSON.stringify(messages);
+                    let type = mime.lookup('json')
+                    assistant.finishResponse(type, data)
+                });
+            }
+        }
+
+
+        else {
+            let filename = path.slice(1)
+            assistant.sendFile(filename)
+        }
+
+    }
+    catch (error) {
+        console.log(error)
+        assistant.sendError(404, "Error: " + error.toISOString())
+    }
+
 }

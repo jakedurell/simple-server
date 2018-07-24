@@ -1,28 +1,15 @@
 {
-  "name": "simple-server",
+  "name": "chat-server",
   "version": "1.0.0",
-  "description": "Source code for the \"Server Side JavaScript\" track:",
-  "main": "cookie_counter.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "dependencies": {
-    "mime": "^2.3.1",
-    "mime-types": "^2.1.18"
-  },
-  "devDependencies": {},
+  "description": "",
+  "main": "chat_server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node simple_chat.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BurlingtonCodeAcademy/simple-server.git"
+    "start": "node chat_server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BurlingtonCodeAcademy/simple-server/issues"
-  },
-  "homepage": "https://github.com/BurlingtonCodeAcademy/simple-server#readme"
+  "dependencies": {
+    "mime-types": "^2.1.19"
+  }
 }

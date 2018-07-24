@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+body {
+    background-color: aqua;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+h1, h2 {
+    color: blue;
+    font-family:'Pacifico';
+    font-size:75px;
+    margin:5px;
+}
+
+#chat-input {
+    height:35px;
+    width: 500px;
+    font-size: 30px;
+}
+
+#chat-submit {
+    height:25px;
+}
+
+#chat-log{
+    color:black;
+    height:400px;
+    overflow:scroll;
+    display: flex;
+    flex-direction: column-reverse;
+    align-self: center;
+    margin:5px;
+    padding:2px;
+    padding-left:15px;
+    text-align: left;
+    width:250px;
+    border: solid 2px black;
+}

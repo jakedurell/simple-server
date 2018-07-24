@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chat Amazing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="chatFavicon.png" />
+</head>
+
+<body>
+    <h1>Chat Amazing! 💬</h1>
+    <div id='chat-log'>
+    </div>
+    <div id="form-input">
+        <form id="chat-form" action='chat' method="Post">
+            <input id="chat-input" type="text" name="body">
+            <input id="chat-submit" type="submit">
+        </form>
+        <button id="getAllNow" action='chat' method="Get">Get New</button>
+
+    </div>
+
+    <h2>Isn't it amazing!</h2>
+    <script>
+        let chatForm = document.getElementById('chat-form')
+        let chatLog = document.getElementById('chat-log')
+        chatForm.addEventListener('submit', (event) => {
+            let inputElement = chatForm.querySelector('input[name=body]')
+            let message = inputElement.value;
+            params = new URLSearchParams();
+            params.append('body', message)
+
+            inputElement.value = ""
+            fetch('/chat', {
+                method: 'POST',
+                body: params,
+
+            }).then((response) => response.json())
+                .then((messages) => {
+                    chatLog.innerHTML += '<br>' + message
+                })
+            event.preventDefault();
+            
+        });
+
+        let getLog = document.getElementById('getAllNow')
+        let mostRecentMessageAt = new Date(Date.now() - 86400 * 1000).toISOString()
+        let gotStatus = false
+
+        let getString = '/chat'
+
+        getLog.addEventListener('click', (event) => {
+
+            fetch(getString, {
+                method: 'GET'
+            }).then((response) => response.json())
+                .then((messages) => {
+                    chatLog.innerHTML += messages.map((message) => message.body).join('<br>')
+                    let timeArray = []
+                    for (let i = 0; i < messages.length; i++) {
+                        timeArray.push(messages[i].when)
+                    }
+                    timeArray.sort()
+                    timeArray.reverse()
+                    mostRecentMessageAt = timeArray[0]
+                    gotStatus = true
+                    getString = '/chat?' + mostRecentMessageAt
+
+                })
+            event.preventDefault();
+
+        })
+
+    </script>
+</body>
+
+</html>
