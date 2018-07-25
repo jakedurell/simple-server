@@ -24,9 +24,23 @@
     </div>
 
     <h2>Isn't it amazing!</h2>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <div id="IP_Address"></div>
+    <div id="Country"></div>
+    <div id="City"></div>
     <script>
         let chatForm = document.getElementById('chat-form')
         let chatLog = document.getElementById('chat-log')
+
+        $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
+            console.log(data);
+            $('#IP_Address').append("Your IP: " + data.query);
+            $('#Country').append("Your Country: " + data.country);
+            $('#City').append("Your City: " + data.city);
+        });
+
         chatForm.addEventListener('submit', (event) => {
             let inputElement = chatForm.querySelector('input[name=body]')
             let message = inputElement.value;
@@ -43,7 +57,7 @@
                     chatLog.innerHTML += '<br>' + message
                 })
             event.preventDefault();
-            
+
         });
 
         let getLog = document.getElementById('getAllNow')
