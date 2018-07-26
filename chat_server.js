@@ -3,12 +3,13 @@ const fs = require('fs');
 const mime = require('mime-types');
 const urlParser = require('url');
 const Assistant = require('./assistant');
+const House = require('./lib/house');
 const port = process.env.PORT || 5000;
 
 http.createServer(handleRequest).listen(port);
 console.log("Listening on port: " + port);
 
-let messages = []
+let house = new House()
 
 function handleRequest(request, response) {
     console.log('request.url is ' + request.url);
@@ -21,10 +22,14 @@ function handleRequest(request, response) {
     console.log(since)
 
     let data
-
+    let messages
+    let message
     try {
         if (path === '/') {
             assistant.sendFile('index.html');
+            house.roomWithId("amaze", "Amazing")
+            console.log("just set up room amaze")
+            
         } else if (path === '/chat') {
             console.log('Parsing the post...')
 
@@ -32,21 +37,18 @@ function handleRequest(request, response) {
                 console.log("HELLO FROM GET!")
                 if (since === undefined) {
                     console.log("Hello from since = undefined")
-                    data = JSON.stringify(messages);
-                    
+                    data = house.getMessagesInRoom("amaze")
+                    data = JSON.stringify(data);
                 }
                 else {
                     console.log("Hello from since = else")
-                    data = []
-                    for (let i = 0; i < messages.length; i++) {
-                        if (messages[i].when > since)
-                            data.push(messages[i])
-                    }
+                    data = house.getMessagesInRoom("amaze", since)
                     data = JSON.stringify(data);
                     console.log(data)
                 }
                 console.log("Hello from after since tests")
-                console.log(data)
+                console.log(data) 
+
                 let type = mime.lookup('json')
                 assistant.finishResponse(type, data)
 
@@ -60,7 +62,9 @@ function handleRequest(request, response) {
                         body: params.body,
                         when: new Date().toISOString()
                     }
-                    messages.push(message);
+                    messages = house.sendMessageToRoom("amaze", message)
+                    console.log(messages)
+                    // messages.push(message);
                     // console.log({ message });
                     // console.log({ messages });
                     let data = JSON.stringify(messages);

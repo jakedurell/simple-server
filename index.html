@@ -33,6 +33,7 @@
     <script>
         let chatForm = document.getElementById('chat-form')
         let chatLog = document.getElementById('chat-log')
+        let timeArray = []
 
         $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
             console.log(data);
@@ -67,13 +68,14 @@
         let getString = '/chat'
 
         getLog.addEventListener('click', (event) => {
-
+            
             fetch(getString, {
                 method: 'GET'
             }).then((response) => response.json())
                 .then((messages) => {
+                    if (messages.length>0) {
+                    chatLog.innerHTML += '<br>'
                     chatLog.innerHTML += messages.map((message) => message.body).join('<br>')
-                    let timeArray = []
                     for (let i = 0; i < messages.length; i++) {
                         timeArray.push(messages[i].when)
                     }
@@ -82,6 +84,7 @@
                     mostRecentMessageAt = timeArray[0]
                     gotStatus = true
                     getString = '/chat?' + mostRecentMessageAt
+                }
 
                 })
             event.preventDefault();
