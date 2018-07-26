@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
 
 body {
-    background-color: aqua;
+    background-color: rgb(0, 195, 255);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -13,10 +13,11 @@ h1, h2 {
     margin:5px;
 }
 
-#chat-input {
+#form-input {
     height:35px;
-    width: 500px;
+    width:435px;
     font-size: 30px;
+    margin-top:10%;
 }
 
 #chat-submit {
@@ -25,15 +26,24 @@ h1, h2 {
 
 #chat-log{
     color:black;
-    height:400px;
+    height:105px;
     overflow:scroll;
-    display: flex;
-    flex-direction: column-reverse;
-    align-self: center;
-    margin:5px;
+    /* display: flex;
+    flex-direction: column-reverse; */
+    /* align-self: center; */
+    /* margin:5px;
     padding:2px;
-    padding-left:15px;
+    padding-left:15px; */
     text-align: left;
-    width:250px;
+    width:435px;
     border: solid 2px black;
+    position:absolute;
+    top:55%;
+    left:43%;
+    background-color:white;
+    overflow-x:auto;
+}
+
+.container{
+    position:relative;
 }
