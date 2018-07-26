@@ -12,8 +12,11 @@
 
 <body>
     <h1>Chat Amazing! 💬</h1>
+    <!-- Set up chat log window. -->
     <div id='chat-log'>
     </div>
+    
+    <!-- Set up input field, submit button, and button for retrieving all messages... -->
     <div id="form-input">
         <form id="chat-form" action='chat' method="Post">
             <input id="chat-input" type="text" name="body">
@@ -27,71 +30,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    <!-- Get IP address info for possible future use in chat window. -->
     <div id="IP_Address"></div>
     <div id="Country"></div>
     <div id="City"></div>
-    <script>
-        let chatForm = document.getElementById('chat-form')
-        let chatLog = document.getElementById('chat-log')
-        let timeArray = []
 
-        $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
-            console.log(data);
-            $('#IP_Address').append("Your IP: " + data.query);
-            $('#Country').append("Your Country: " + data.country);
-            $('#City').append("Your City: " + data.city);
-        });
+    <script type="text/javascript" src="index.js"></script>
 
-        chatForm.addEventListener('submit', (event) => {
-            let inputElement = chatForm.querySelector('input[name=body]')
-            let message = inputElement.value;
-            params = new URLSearchParams();
-            params.append('body', message)
 
-            inputElement.value = ""
-            fetch('/chat', {
-                method: 'POST',
-                body: params,
-
-            }).then((response) => response.json())
-                .then((messages) => {
-                    chatLog.innerHTML += '<br>' + message
-                })
-            event.preventDefault();
-
-        });
-
-        let getLog = document.getElementById('getAllNow')
-        let mostRecentMessageAt = new Date(Date.now() - 86400 * 1000).toISOString()
-        let gotStatus = false
-
-        let getString = '/chat'
-
-        getLog.addEventListener('click', (event) => {
-            
-            fetch(getString, {
-                method: 'GET'
-            }).then((response) => response.json())
-                .then((messages) => {
-                    if (messages.length>0) {
-                    chatLog.innerHTML += '<br>'
-                    chatLog.innerHTML += messages.map((message) => message.body).join('<br>')
-                    for (let i = 0; i < messages.length; i++) {
-                        timeArray.push(messages[i].when)
-                    }
-                    timeArray.sort()
-                    timeArray.reverse()
-                    mostRecentMessageAt = timeArray[0]
-                    gotStatus = true
-                    getString = '/chat?' + mostRecentMessageAt
-                }
-
-                })
-            event.preventDefault();
-
-        })
-
-    </script>
 </body>
 
 </html>
