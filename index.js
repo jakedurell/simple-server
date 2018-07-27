@@ -10,9 +10,13 @@ $.ajax({
     success: function (data) {
         name = data.results[0].name.first;
         name = name.charAt(0).toUpperCase() + name.slice(1)
-
+        let windowsBar = document.getElementById('windowsBar') 
+        console.log(name)
+        windowsBar.innerHTML += " " + name + " - Instant Message"
     }
 });
+
+
 
 //makes sure that you don't get messages that are more than 24 hours old
 let mostRecentMessageAt = new Date(Date.now() - 86400 * 1000).toISOString()

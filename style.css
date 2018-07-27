@@ -31,8 +31,17 @@ h1, h2 {
     border-top-right-radius: 2%;
     overflow:hidden;
 }
+#aolCornerIcon {
+    height:auto;
+}
 
-
+#windowsBar {
+    color:#def6ff;
+    font-family: Verdana;
+    font:10px;
+    margin-left: 3px;
+    box-shadow: 10px;
+}
 
 #chat-log{
     color:black;
