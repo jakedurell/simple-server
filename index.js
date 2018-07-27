@@ -87,7 +87,9 @@ getLog.addEventListener('click', (event) => {
 
                 // setMostRecentTime(messages)
             }
-
+            $('#chat-log').stop().animate({
+                scrollTop: messages.length * 25
+            }, 100);
         })
     event.preventDefault();
 
