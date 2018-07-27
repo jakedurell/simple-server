@@ -2,7 +2,7 @@ let chatForm = document.getElementById('chat-form')
 let chatLog = document.getElementById('chat-log')
 let timeArray = []
 let name
-console.log(ENV['Authors'])
+
 //automatically generates a username 
 $.ajax({
     url: 'https://randomuser.me/api/',
@@ -93,14 +93,14 @@ var event = new Event('click');
 // Dispatch the event.
 getLog.dispatchEvent(event);
 
-function callAjax() {
-    $getLog.dispatchEvent(event).done(function() {
-        //do your response
-        setTimeout(callAjax, 1);
-    });
-}
+// function callAjax() {
+//     $.ajax(options).done(function() {
+//         //do your response
+//         setTimeout(callAjax, 2000);
+//     });
+// }
 
-callAjax();
+// callAjax();
 
 //gets all times for all messages and find most recent
 function setMostRecentTime(messages) {
