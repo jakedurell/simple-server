@@ -18,7 +18,8 @@ function handleRequest(request, response) {
     let assistant = new Assistant(request, response);
     let path = assistant.path
 
-    let since = request.url.split('?')[1]
+    // let since = request.url.split('?')[1]
+    let since = undefined
     console.log("since is: ")
     console.log(since)
 

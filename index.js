@@ -7,12 +7,12 @@ let name
 $.ajax({
     url: 'https://randomuser.me/api/',
     dataType: 'json',
-    success: function(data) {
-      name = data.results[0].name.first;
-      name = name.charAt(0).toUpperCase() + name.slice(1)
-      
+    success: function (data) {
+        name = data.results[0].name.first;
+        name = name.charAt(0).toUpperCase() + name.slice(1)
+
     }
-   });
+});
 
 //makes sure that you don't get messages that are more than 24 hours old
 let mostRecentMessageAt = new Date(Date.now() - 86400 * 1000).toISOString()
@@ -29,7 +29,7 @@ $.getJSON("http://ip-api.com/json/?callback=?", function (data) {
 chatForm.addEventListener('submit', (event) => {
     let inputElement = chatForm.querySelector('input[name=body]')
     let message = inputElement.value;
-    message = '<b>' +  name + ': </b>' + message 
+    message = '<b>' + name + ': </b>' + message
     //this captures the value from the data form
     params = new URLSearchParams();//conduit between form and fetch
     params.append('body', message)
@@ -53,13 +53,13 @@ chatForm.addEventListener('submit', (event) => {
             setMostRecentTime(messages)
             $('#chat-log').stop().animate({
                 scrollTop: messages.length * 25
-              }, 100);
+            }, 100);
         })
     event.preventDefault();
     // chatLog.scrollTop = chatLog.scrollHeight
     // $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
 
-   
+
 
 });
 
@@ -81,7 +81,7 @@ getLog.addEventListener('click', (event) => {
                 //goes through every element and creates an invisible array which is put into HTML and then joined together
                 chatLog.innerHTML += messages.map((message) => message.body).join('<br>')
 
-                setMostRecentTime(messages)
+                // setMostRecentTime(messages)
             }
 
         })
@@ -91,14 +91,14 @@ getLog.addEventListener('click', (event) => {
 
 var event = new Event('click');
 // Dispatch the event.
-getLog.dispatchEvent(event);
 
-// function callAjax() {
-//     $.ajax(options).done(function() {
-//         //do your response
-//         setTimeout(callAjax, 2000);
-//     });
-// }
+alwaysGet()
+
+function alwaysGet() {
+    getLog.dispatchEvent(event);
+    //do your response
+    setTimeout(alwaysGet, 400);
+}
 
 // callAjax();
 
