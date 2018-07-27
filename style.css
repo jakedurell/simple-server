@@ -20,7 +20,8 @@ h1, h2 {
     /* align-content: center; */
     flex-direction: column;
     align-items: center;
-    width:450px;
+    width:58.505%;
+    max-width: 600px;
     min-height:400px;
     background-color: #edeada;
     border: 2px solid #0f5de6;
@@ -56,14 +57,14 @@ h1, h2 {
 
 #form-input {
     height:auto;
-    width:435px;
-    font-size: 30px;
+    width:98%;
+    font-size: 1%;
     margin:0;
     padding:0;
 }
 
 #chat-input {
-    width:430px;
+    width:99%;
     height:100px;
     line-height: 1em;
     padding:0;
@@ -106,10 +107,11 @@ input[type=submit] {
 }
 
 #menuItems {
-    display:inline-block;
+    display:flex;
+    flex-direction: row;
     clear: both;
     font-family: Verdana;
-    font-size: 12px;
+    font-size: 1%;
     width:100%;
 
     border-bottom: 1px solid rgba(0,0,0,.39);    
