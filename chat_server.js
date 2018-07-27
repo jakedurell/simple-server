@@ -7,6 +7,7 @@ const House = require('./lib/house');
 const port = process.env.PORT || 5000;
 
 http.createServer(handleRequest).listen(port);
+console.log(ENV['Authors'])
 console.log("Listening on port: " + port);
 
 let house = new House()
