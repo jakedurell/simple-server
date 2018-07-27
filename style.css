@@ -5,28 +5,37 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-content: center;
 }
 h1, h2 {
     color: blue;
     font-family:'Pacifico';
-    font-size:75px;
+    font-size:60px;
     margin:5px;
 }
-
-#form-input {
-    height:35px;
-    width:435px;
-    font-size: 30px;
-    margin-top:10%;
+#container {
+    /* position:relative; */
+    display:flex;
+    align-self: center;
+    /* align-content: center; */
+    flex-direction: column;
+    align-items: center;
+    width:450px;
+    min-height:400px;
+    background-color: #edeada;
+    border: 2px solid #0f5de6;
+    padding-top:0;
+    flex-wrap: nowrap;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    overflow:hidden;
 }
 
-#chat-submit {
-    height:25px;
-}
+
 
 #chat-log{
     color:black;
-    height:105px;
+    height:150px;
     overflow:scroll;
     /* display: flex;
     flex-direction: column-reverse; */
@@ -35,15 +44,104 @@ h1, h2 {
     padding:2px;
     padding-left:15px; */
     text-align: left;
-    width:435px;
-    border: solid 2px black;
-    position:absolute;
+    width:97%;
+    border: solid 1px black;
+    /* position:absolute;
     top:55%;
-    left:43%;
+    left:43%; */
     background-color:white;
     overflow-x:auto;
+    margin-top: 5px;
 }
 
-.container{
-    position:relative;
+#form-input {
+    height:auto;
+    width:435px;
+    font-size: 30px;
+    margin:0;
+    padding:0;
+}
+
+#chat-input {
+    width:430px;
+    height:100px;
+    line-height: 1em;
+    padding:0;
+    line-height: 1em;
+    /* position: absolute;
+    bottom: 0; */
+}
+
+#aolBox{
+    border: 1px solid rgba(0,0,0,.39); 
+    float: right;
+    margin: 2px;
+    height: 50px;
+    width: 50px; 
+    padding-top: 5px; 
+}
+
+input[type=submit] {
+    background: transparent;
+    height: 90%;
+    width: 90%;
+    background-size:100% 100%;
+}
+
+#aimStrip {
+    width:98%;
+}
+
+#topBar {
+    width: 100%;
+    height:25px;
+    border: 2px solid #0f5de6;
+    margin-bottom: 5px;
+    background-color:#0f5de6;
+    display: flex;
+    align-content: left;
+}
+#aolCornerIcon {
+    height:auto;
+}
+
+#menuItems {
+    display:inline-block;
+    clear: both;
+    font-family: Verdana;
+    font-size: 12px;
+    width:100%;
+
+    border-bottom: 1px solid rgba(0,0,0,.39);    
+}
+
+#leftItems {
+    float: left;
+    text-align: left;
+    width: 38.5%;
+    padding-left:5px;
+}
+
+.left {
+    float: left;
+    margin: 2px;
+    text-align: left;
+    padding-right:7px;
+}
+
+#rightItems {
+    float:right;
+    text-align: right;
+    width: 58.5%;
+    padding-right:5px;
+}
+.right {
+    float: right;
+    margin: 2px;
+    text-align: right;
+    /* padding-right:7px; */
+}
+
+#getNewMessages{
+    display:none;
 }

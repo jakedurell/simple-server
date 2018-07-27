@@ -51,9 +51,15 @@ chatForm.addEventListener('submit', (event) => {
                 chatLog.innerHTML += '<br>' + note.body
             }
             setMostRecentTime(messages)
+            $('#chat-log').stop().animate({
+                scrollTop: messages.length * 25
+              }, 100);
         })
     event.preventDefault();
-    chatLog.scrollTop = chatLog.scrollHeight
+    // chatLog.scrollTop = chatLog.scrollHeight
+    // $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
+
+   
 
 });
 

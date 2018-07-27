@@ -13,21 +13,37 @@
 <body>
     <h1>Amazing Online! 💬</h1>
     <!-- Set up chat log window. -->
-    <div id = "container">
-        <img id = "aim" src="aim.jpg">
-    <div id='chat-log'>
-    </div>
-    
-    <!-- Set up input field, submit button, and button for retrieving all messages... -->
-    <div id="form-input">
-        <form id="chat-form" action='chat' method="Post">
-            <input id="chat-input" type="text" name="body">
-            <input id="chat-submit" type="submit">
-        </form>
-        <button id="getNewMessages" action='chat' method="Get">Get New</button>
+    <div id="container">
+        <div id="topBar">
+            <img id="aolCornerIcon" src="aolCornerIcon.png">
+        </div>
+        <div id="menuItems">
+            <div id="leftItems">
+                <div class="left">File</div>
+                <div class="left">Edit</div>
+                <div class="left">Insert</div>
+                <div class="left">People</div>
+            </div>
+            <div id="rightItems">
+                <div class="right">AOL System Msg's Warning Level O%</div>
+            </div>
+        </div>
+        <div id='chat-log'></div>
+        <img id="aimStrip" src="aimStrip.png">
+        <!-- Set up input field, submit button, and button for retrieving all messages... -->
+        <div id="form-input">
+            <form id="chat-form" action='chat' method="Post">
+                <input id="chat-input" type="text" name="body" autocomplete="off">
+                <div id="aolBox">
+                    <input id="chat-submit" type="submit" value="" style="background-image: url('aolWalkIcon.png'); border:none; background-repeat:no-repeat;">
+                </div>
 
+
+            </form>
+            <button id="getNewMessages" action='chat' method="Get">Get New</button>
+
+        </div>
     </div>
-</div>
     <h2>Isn't it amazing!</h2>
 
 
