@@ -2,7 +2,7 @@ let chatForm = document.getElementById('chat-form')
 let chatLog = document.getElementById('chat-log')
 let timeArray = []
 let name
-consoe.log(ENV['Authors'])
+console.log(ENV['Authors'])
 //automatically generates a username 
 $.ajax({
     url: 'https://randomuser.me/api/',
