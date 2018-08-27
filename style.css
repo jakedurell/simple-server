@@ -1,17 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
 
 body {
-    background-color: rgb(0, 195, 255);
-    text-align: center;
+    background-image: url('windowsBackground.jpg');
     display: flex;
+    text-align: center;
     flex-direction: column;
     align-content: center;
 }
+
 h1, h2 {
-    color: blue;
-    font-family:'Pacifico';
-    font-size:60px;
-    margin:5px;
+    color: blue !important;
+    font-family:'Pacifico' !important;
+    font-size:60px !important;
+    margin:15px  !important;
+    display:flex;
+    align-self: center;
+    text-align: center;
 }
 #container {
     /* position:relative; */
@@ -47,18 +51,9 @@ h1, h2 {
     color:black;
     height:150px;
     overflow:scroll;
-    /* display: flex;
-    flex-direction: column-reverse; */
-    /* align-self: center; */
-    /* margin:5px;
-    padding:2px;
-    padding-left:15px; */
     text-align: left;
     width:97%;
     border: solid 1px black;
-    /* position:absolute;
-    top:55%;
-    left:43%; */
     background-color:white;
     overflow-x:auto;
     margin-top: 5px;
@@ -73,19 +68,34 @@ h1, h2 {
 }
 
 #chat-input {
-    width:99%;
+    width:93%;
     height:100px;
     line-height: 1em;
     padding:0;
     line-height: 1em;
-    /* position: absolute;
-    bottom: 0; */
+}
+
+#chat-form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#belowInput {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 #aolBox{
     border: 1px solid rgba(0,0,0,.39); 
     float: right;
     margin: 2px;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-right: 10px;
     height: 50px;
     width: 50px; 
     padding-top: 5px; 
@@ -156,3 +166,45 @@ input[type=submit] {
 #getNewMessages{
     display:none;
 }
+
+#roomButtons {
+    font-size: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+#roomButtons button {
+
+    width: 75px;
+    padding: 2px;
+    white-space: normal; 
+    overflow-wrap: normal;
+    
+}
+
+@media only screen and (max-width: 500px)  {
+    #container {
+
+      width: 90%;
+
+    }
+
+    #topBar {
+        width: 100%;
+        height:50px;
+        border: 2px solid #0f5de6;
+        margin-bottom: 5px;
+        background-color:#0f5de6;
+        display: flex;
+        align-content: left;
+    }
+
+        #roomButtons {
+            width: 70%;
+        }
+    
+  }

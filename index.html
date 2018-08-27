@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="chatFavicon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -33,10 +37,18 @@
         <img id="aimStrip" src="aimStrip.png">
         <!-- Set up input field, submit button, and button for retrieving all messages... -->
         <div id="form-input">
-            <form id="chat-form" action='chat' method="Post">
+            <form id="chat-form" class="row" action='chat' method="Post">
                 <input id="chat-input" type="text" name="body" autocomplete="off">
-                <div id="aolBox">
-                    <input id="chat-submit" type="submit" value="" style="background-image: url('aolWalkIcon.png'); border:none; background-repeat:no-repeat;">
+                <div id="belowInput">
+                    <div id="roomButtons" class="btn-group" data-toggle="buttons-radio">
+                        <button id="whiteroom" type="button" class="active btn btn-primary myButton">White Room</button>
+                        <button id="pinkroom" type="button" class="btn btn-primary myButton">Pink Room</button>
+                        <button id="greenroom" type="button" class="btn btn-primary myButton">Green Room</button>
+                    </div>
+                    <!-- <input type="text" id="buttonvalue"/> -->
+                    <div id="aolBox">
+                        <input id="chat-submit" type="submit" value="" style="background-image: url('aolWalkIcon2.png'); border:none; background-repeat:no-repeat;">
+                    </div>
                 </div>
 
 
@@ -45,15 +57,15 @@
 
         </div>
     </div>
-    <h2>Isn't it amazing!</h2>
+    <h2>Isn't it amazing!?</h2>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- Get IP address info for possible future use in chat window. -->
-    <div id="IP_Address"></div>
-    <div id="Country"></div>
-    <div id="City"></div>
+    <!-- <div id="IP_Address"></div>
+        <div id="Country"></div>
+        <div id="City"></div> -->
 
     <script type="text/javascript" src="index.js"></script>
 
