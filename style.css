@@ -73,6 +73,8 @@ h1, h2 {
     line-height: 1em;
     padding:0;
     line-height: 1em;
+    font-size: 20px;
+    padding-bottom: 10%;
 }
 
 #chat-form {

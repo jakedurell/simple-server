@@ -45,6 +45,7 @@ $(".btn-group button").click(function () {
     if (selectColor === "Pink") {color = "#ffd8fb"}
     console.log(color)
     $("#chat-log").css('background-color',color)
+    $("#chat-log").html("")
 });
 
 //makes sure that you don't get messages that are more than 24 hours old
